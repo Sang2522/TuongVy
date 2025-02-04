@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyen Thuy Tuong Vy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="check.js">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<body>
+    <style>
+        body {
+            font-family: "Helvetica", sans-serif;
+            color: #ffffff;
+        }
+        a {
+            color: #ffffff;
+        }
+        .hover-text { color: rgba(255, 255, 255, 0.476); transition: color 0.3s ease; } .hover-text:hover { color: rgb(255, 255, 255); }
+    </style>
+
+<style>
+    .btn {
+      background-color: #F3763E;
+      color: rgb(255, 255, 255);
+      padding: 16px 24px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #e57a45a3;
+    }
+  </style>
+
+  <style>
+    body {
+        background-image: url(images/background.avif);
+        background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+    }
+    body {
+        overflow: hidden;
+    }
+  </style>
+
+    <!-- Picture -->
+    <style>
+        /* ----- Khung chứa ảnh ----- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 24px;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* ----- Popup ----- */
+        .popup {
+    display: none; /* Đảm bảo popup ẩn khi load trang */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+        .popup img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .popup img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nút đóng */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+
+<style>
+    /* Popup yêu cầu xoay màn hình */
+.popup-rotate {
+    display: none; /* Mặc định ẩn popup */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    width: auto;
+}
+
+.popup-rotate button {
+    background-color: #F3763E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.popup-rotate button:hover {
+    background-color: #e57a45;
+}
+</style>
+
+    <main>
+        <div class="popup-rotate" id="popup-rotate">
+            <div class="popup-content">
+                <p>Vui lòng xoay màn hình của bạn theo chiều ngang để tiếp tục.</p>
+                <button onclick="closeRotatePopup()">Đã xoay màn hình</button>
+            </div>
+        </div>
+        <div style="width: auto;height: fit-content;margin-left: 32px; margin-right: 24px;margin-top:24px; margin-bottom: 16px;">
+            <div style="height: fit-content; width: auto;background-color: #ffffff75; border-radius: 32px;padding: 16px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;display: flex;gap: 24px;">
+                <!-- Black Box -->
+                <div style="width:20%;height: fit-content;background-color: #22284A;border-radius: 32px;padding: 24px;">
+                    <div style="width: auto; height: fit-content;background-color: #22284A;">
+                        <div style="text-align: center;">
+                            <h2 style="font-weight: 400;"><i class="fa-solid fa-egg" style="color: #F3763E;"></i>  Twovie portfolio</h2>
+                        </div>
+                        <!-- Box Avatar -->
+                        <div style="width: auto;height: fit-content;background-color: #434864; border-radius: 24px; padding: 16px;text-align: center;">
+                            <img class="animate__heartBeat" src="images/Avatar.avif" style="width: 70px; height: 70px; border-radius: 100%;" alt="">
+                            <div class="content">
+                                <!-- <h3 style="font-weight: 500;">Nguyễn Thụy Tường Vy</h3> -->
+                                <div class="fa-1x">
+                                    <i class="fa-solid fa-circle-plus fa-beat"></i>
+                                    <i class="fa-solid fa-heart fa-beat"></i>
+                                    <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s;"></i>
+                                    <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 2s;"></i>
+                                    <i class="fa-solid fa-heart fa-beat" style="--fa-beat-scale: 2.0;"></i>
+                                  </div>
+                                <a style="text-decoration: none;" href="https://www.instagram.com/twovie.ckn/" class="hover-text">@twovie.ckn</a>
+                            </div>
+                        </div>
+                        <!-- Box Avatar -->
+
+                         <!-- Box Menu -->
+                         <div class="Menu">
+                            <h3 style="font-weight: 600;">Menu</h3>
+                            <ul style="list-style: none;">
+                              <li><a href="https://thptbencat.edu.vn/" style="text-decoration: none;" class="hover-text"><i class="fa-solid fa-building"></i>  School</a></li>
+                              <br>
+                              <li><a href="https://thptbencat.edu.vn/" style="text-decoration: none;" class="hover-text"><i class="fa-solid fa-briefcase"></i>  Works</a></li>
+                              <br>
+                              <li><a href="https://thptbencat.edu.vn/" style="text-decoration: none;" class="hover-text"><i class="fa-solid fa-camera-retro"></i>  Images</a></li>
+                            </ul>
+                         </div>
+                         <div class="Menu2">
+                            <h3 style="font-weight: 600;">Contact</h3>
+                            <ul style="list-style: none;">
+                                <li><a href="#" style="text-decoration: none;" class="hover-text"><i class="fa-solid fa-envelope"></i>  Email</a></li>
+                              <br>
+                              <li><a href="#" style="text-decoration: none;" class="hover-text"><i class="fa-solid fa-phone"></i>  Phone</a></li>
+                            </ul>
+                         </div>
+                         <!-- Box Menu -->
+                          <div class="Button" style="padding-top: 16px;">
+                            <a href="https://thptbencat.edu.vn/" style="text-decoration: none;"><div class="btn"><i class="fa-solid fa-power-off"></i> Log out</div></a>
+                          </div>
+                    </div>
+                </div>
+                <!-- Black Box -->
+                
+                <!-- Box big -->
+                <div class="Box big" style="width: 60%;height: fit-content; gap: 24px;display:flex;">
+                 <!-- Box content 1 -->
+                <div class="Box1" style="width: fit-content;height: fit-content;background-color: #ffffff;border-radius: 32px;padding: 24px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                    <div class="content" style="display: flex;justify-content: space-between; align-items: center;">
+                    <h3 style="font-weight: 600;color: #22284A;">Video & Picture</h3>
+                    <i class="fa-solid fa-images fa-2x" style="color: #B2B2B2;"></i>
+                    </div>
+                    <p style="color: #434864;">Since version 4, Animate.css uses custom properties</p>
+                    <div class="images" style="display: flex; justify-content: center;">
+                                                <!-- Khung chứa ảnh -->
+    <div class="gallery">
+        <img src="images/background.avif" alt="Image 5" onclick="openPopup(this)">
+        <img src="images/image 6.jpg" alt="Image 6" onclick="openPopup(this)">
+        <img src="images/image 5.jpg" alt="Image 7" onclick="openPopup(this)">
+        <img src="images/image 4.avif" alt="Image 8" onclick="openPopup(this)">
+        <img src="images/image 3.png" alt="Image 8" onclick="openPopup(this)">
+        <img src="images/image 2.png" alt="Image 8" onclick="openPopup(this)">
+    </div>
+                    </div>
+                    <div class="video" style="display: flex;justify-content: center;padding-top: 12px;">
+                        <iframe style="border-radius: 24px;" width="350" height="200" 
+    src="https://www.youtube.com/embed/pjm2aXT3A2M?enablejsapi=1&autoplay=1&mute=1" 
+    title="YouTube video player" frameborder="24" allow="autoplay" allowfullscreen>
+</iframe>
+                    </div>
+                </div>
+                <!-- Box content 1 -->
+
+                 <!-- Box content 2 -->
+                 <div class="Box2" style="width: fit-content;height: fit-content;background-color: #ffffff;border-radius: 32px;padding: 24px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                    <div class="content" style="display: flex;justify-content: space-between; align-items: center;">
+                    <h3 style="font-weight: 600;color: #22284A;">Friends</h3>
+                    <i class="fa-solid fa-user-group fa-2x" style="color: #B2B2B2;"></i>
+                    </div>
+                    <p style="color: #434864;">Since version 4, Animate.css uses custom properties</p>
+                    <div class="images" style="display: flex; justify-content: center;">
+                        <!-- Khung chứa ảnh -->
+    <div class="gallery">
+        <img src="images/Avatar.avif" alt="Image 1" onclick="openPopup(this)">
+        <img src="images/image 6.jpg" alt="Image 2" onclick="openPopup(this)">
+        <img src="images/image 4.avif" alt="Image 3" onclick="openPopup(this)">
+        <img src="images/image 5.jpg" alt="Image 4" onclick="openPopup(this)">
+    </div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <img id="popup-img" src="" alt="Popup Image">
+    </div>
+                    </div>
+                    <div class="Box mini" style="background-color: #29325D;padding: 12px;margin-top: 12px;border-radius: 24px;">
+                        <div class="content" style="display: flex;justify-content: space-between;align-items: center;">
+                            <h3 style="font-weight: 600;color: #ffffff;">Reward</h3>
+                    <i class="fa-solid fa-gem fa-2x" style="color: #ffffff;"></i>
+                        </div>
+                        <p style="color: #ffffff;font-size: small;">Since version 4, Animate.css uses custom properties</p>
+                        <div class="Button" style="padding-top: 16px;">
+                            <a href="https://thptbencat.edu.vn/" style="text-decoration: none;"><div class="btn"><i class="fa-solid fa-bomb"></i> Explore</div></a>
+                          </div>
+                    </div>
+                </div>
+                <!-- Box content 2 -->
+            </div>
+            <!-- Box Big end -->
+            
+            <!-- Box info -->
+            <div class="Box infor" style="width: 20%;height: fit-content;background-color: #ffffff;border-radius: 32px;padding: 24px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                <div style="display: flex;justify-content: center;">
+                    <img class="" src="images/image 3.png" style="width: 150px; height: 150px; border-radius: 100px;" alt="Image 9" onclick="openPopup(this)">
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="color: #22284A;">Nguyen Thuy Tuong Vy</h3>
+                <a style="text-decoration: none;color: #434864;" href="https://www.instagram.com/twovie.ckn/" class="hover-text">@twovie.ckn</a>
+                </div>
+                <hr>
+                <p style="color: #F3763E;"><i class="fa-solid fa-cake-candles"></i> 10 July 2007</p>
+                <p style="color: #F3763E;"><i class="fa-solid fa-house"></i> Ben Cat City, Binh Duong</p>
+                <p style="color: #F3763E;"><i class="fa-solid fa-building"></i> Ben Cat high school</p>
+                <hr>
+                <h4 style="color: #434864;">About me</h4>
+                <p style="color: #434864;">Be aware that some animations are dependent on the animation-timing
+                property set on the animation's class. Changing or not declaring it might lead to unexpected results.</p>
+            </div>
+            <!-- Box info -->
+            </div>
+        </div>
+        
+    </main>
+    <script>
+        function openPopup(imgElement) {
+            const popup = document.getElementById("popup");
+            const popupImg = document.getElementById("popup-img");
+            popup.style.display = "flex";
+            popupImg.src = imgElement.src;
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
